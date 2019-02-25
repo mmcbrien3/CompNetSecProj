@@ -18,7 +18,7 @@ class Silverback(object):
     def clean_text(self, rgx_list, text):
         new_text = text
         for rgx_match in rgx_list:
-            new_text = re.sub(rgx_match, '', new_text)
+            new_text = re.sub(rgx_match, ' ', new_text)
         return new_text
 
     def search_and_write(self):
@@ -30,7 +30,7 @@ class Silverback(object):
             for item in mails:
                 f = item.sender
                 s = item.subject
-                j = self.clean_text(["<.*>", "\n", "\t"], item.body)
+                j = self.clean_text(["<(.*?)>", "(\r\n|\r|\n)"], item.body)
 
                 if s and f and j:
                     writer.writerow([f, s, j])
