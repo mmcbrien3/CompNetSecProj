@@ -1,10 +1,13 @@
 from guerrillamail import GuerrillaMailSession
-import re, csv, random, datetime
+import re, csv, random, datetime, os
 
 class Silverback(object):
 
-    data_folder = "./guerilla_data"
-    list_of_names_file = "./nounlist.txt"
+    full_path = os.path.realpath(__file__)
+    directory = os.path.dirname(full_path)
+    data_folder = directory + "//guerrilla_data"
+    list_of_names_file = directory + "/nounlist.txt"
+
 
     def __init__(self, addr = "john@sharklasers.com", random_name = False):
         if not random_name:
