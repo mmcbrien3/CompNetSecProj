@@ -32,7 +32,7 @@ class Mailman(object):
 
     def clean_text(self, rgx_list, text):
         new_text = text
-        if self.no_html:
+        if not self.no_html:
             return text
         new_text = html2text.html2text(new_text)
 
